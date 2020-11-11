@@ -5,7 +5,6 @@ export const getUTCInMilliSec = (date) => {
   const minutes = now.getUTCMinutes();
   const seconds = now.getUTCSeconds();
   const milliseconds = now.getUTCMilliseconds();
-  // get the time of the new date in milliseconds
 
   const UTCTime = Date.UTC(
     year,
@@ -16,6 +15,10 @@ export const getUTCInMilliSec = (date) => {
     seconds,
     milliseconds
   );
-  console.log(UTCTime);
+  if (!UTCTime) {
+    alert("Please enter a valid date");
+    return;
+  }
+
   return UTCTime;
 };

@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import { getUTCInMilliSec } from "./helpers";
 
 const App = () => {
-  let [convertedValue, setConvertedValue] = useState("");
+  let [dateInMilliSec, setDateInMilliSec] = useState("");
+  let [isCopyDate, setIsCopyDate] = useState(false);
   const convertDateToMilleseconds = (e) => {
     const timeInUTC = getUTCInMilliSec(e.target.date.value);
     e.preventDefault();
-    setConvertedValue(timeInUTC);
+    setDateInMilliSec(timeInUTC);
+    setIsCopyDate(true);
+  };
+  const handleCopyDate = () => {
+    const copyDate = document.getElementById("date-in-milli-sec").innerHTML;
+    navigator.clipboard.writeText(copyDate);
   };
   return (
     <main>
@@ -16,7 +22,12 @@ const App = () => {
         <input type="date" name="date" id="date-input" />
         <button>Convert</button>
       </form>
-      <p aria-label="the converted value">{convertedValue}</p>
+      <div>
+        <span id="date-in-milli-sec" aria-label="date in milliseconds">
+          {dateInMilliSec}
+        </span>
+        {isCopyDate && <button onClick={handleCopyDate}>Copy</button>}
+      </div>
     </main>
   );
 };

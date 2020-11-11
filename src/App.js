@@ -10,12 +10,10 @@ const App = () => {
   };
   return (
     <main>
+      <h1>Convert Dates To MilliSeconds</h1>
       <form onSubmit={convertDateToMilleseconds}>
-        <h1>Convert Dates To MilleSeconds</h1>
-        <label>
-          <span>Choose a date</span>
-          <input type="date" name="date" />
-        </label>
+        <label htmlFor="date-input">Choose a date</label>
+        <input type="date" name="date" id="date-input" />
         <button>Convert</button>
       </form>
       <p aria-label="the converted value">{convertedValue}</p>

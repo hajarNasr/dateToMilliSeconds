@@ -20,5 +20,6 @@ export const getUTCInMilliSec = (date) => {
     return;
   }
 
-  return UTCTime;
+  const offset = new Date().getTimezoneOffset() * 60000;
+  return UTCTime + offset;
 };
